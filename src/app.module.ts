@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CoffeesController } from './coffees/coffees.controller';
-import { CoffeesService } from './coffees/coffees.service';
+import { CoffeesController } from './coffees/coffees.controller'; // dormant?
+import { CoffeesService } from './coffees/coffees.service'; // dormant?
 import { CoffeesModule } from './coffees/coffees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 // import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';

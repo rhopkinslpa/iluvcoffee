@@ -22,7 +22,7 @@ export class CoffeesController {
     }
     
     @Get(':id')
-    findOne(@Param('id') id: string) {
+    findOne(@Param('id') id: number) {
         console.log(typeof id);
         return this.coffeesService.findOne('' + id);
     }
@@ -30,7 +30,7 @@ export class CoffeesController {
     @Post() 
     create(@Body() createCoffeeDto: CreateCoffeeDto) {
         console.log(createCoffeeDto instanceof CreateCoffeeDto);
-        return this.coffeesService.create(CreateCoffeeDto);
+        return this.coffeesService.create(createCoffeeDto);
     }
     
     @Patch(':id')
