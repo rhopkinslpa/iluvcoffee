@@ -1,6 +1,6 @@
-import { Injectable, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Connection, DataSource } from 'typeorm';
+// import { DataSource } from 'typeorm/data-source/DataSource';
 import { Event } from '../events/entities/event.entity';
 import { COFFEE_BRANDS } from './coffees.constants';
 import { CoffeesController } from './coffees.controller';
@@ -9,28 +9,21 @@ import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 
 // See Understand Dependency Injection, 3:00
-// See Control NestJS Module Encapsulation, 2:30
-// See Value Based Providers
-// See Use Transactions   
-// See Class Providers 
-// See Factory Providers
-// See Leverage Async Providers (the last 3 chapters overwrote stuff in this module)
+// See Control NestJS Module Encapsulation, 2:30 and:
+//   Value Based Providers
+//   Use Transactions   
+//   Class Providers 
+//   Factory Providers
+//   Leverage Async Providers (the last 3 chapters overwrote stuff in this module)
+//   Scheme Validation
+//   Using the Config Service
+
+// I removed most or all of the above complexity, not necessary. 
 
 @Module({ 
   imports: [TypeOrmModule.forFeature([Coffee, Flavor, Event])],
   controllers: [CoffeesController], 
-  providers: [ 
-    CoffeesService,
-    { 
-      provide: COFFEE_BRANDS, 
-      useFactory: async (connection: DataSource): Promise<string[]> => {
-        const coffeeBrands = await Promise.resolve([ 'buddy brew', 'nescafe' ]);
-        console.log(' [!] Async factory');
-        return coffeeBrands;
-      },
-      inject: [DataSource],
-    },
-  ],
+  providers: [CoffeesService],
   exports: [CoffeesService],
 })
 export class  CoffeesModule {}

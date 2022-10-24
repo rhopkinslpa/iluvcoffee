@@ -19,11 +19,10 @@ export class CoffeesService {
     private readonly coffeeRepository: Repository<Coffee>,
     @InjectRepository(Flavor)
     private readonly flavorRepository: Repository<Flavor>,
-    // in Use Transactions it's connection: Connection but that's deprecated
+    // in Use Transactions it's "connection: Connection" but that is deprecated
     private readonly dataSource: DataSource,  
-    @Inject(COFFEE_BRANDS) coffeeBrands: string[],
   ) {
-    console.log(coffeeBrands);
+    console.log(COFFEE_BRANDS);
   }
 
   findAll(paginationQuery: PaginationQueryDto) {  // from Adding Pagination
