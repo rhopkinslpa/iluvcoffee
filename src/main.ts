@@ -8,7 +8,7 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true, 
       forbidNonWhitelisted: true,
-      transformOptions: {
+      transformOptions: {                // from Adding Pagination
         enableImplicitConversion: true,
       }
     }),
