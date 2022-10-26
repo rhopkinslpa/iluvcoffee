@@ -4,29 +4,41 @@ import {
     Delete,
     Get, 
     Param,
+    ParseIntPipe,
     Patch, 
     Post,
     Query 
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { ApiForbiddenResponse, ApiResponse } from '@nestjs/swagger/dist/decorators/api-response.decorator';
+import { publicDecrypt } from 'crypto';
+import { Protocol } from 'src/common/decorators/protocol.decorator';
+import { Public } from '../common/decorators/public.decorator';
 import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
+@ApiTags('coffees')
 @Controller('coffees')
 export class CoffeesController {
     constructor(private readonly coffeesService: CoffeesService) {}
 
-    // ERROR [ExceptionsHandler] this.coffeesService.findAll is not a function
+    @ApiForbiddenResponse({ description: 'Forbidden.' })
+    @Public()
     @Get()
-    findAll(@Query() paginationQuery: PaginationQueryDto) {  // from Adding Pagination
-        console.log('ran findAll');
+    // from Adding Pagination and Create Custom Param Decorators
+    async findAll(
+        @Protocol('https') protocol:string, 
+        @Query() paginationQuery: PaginationQueryDto
+    ) {  
+        console.log(protocol);
         return this.coffeesService.findAll(paginationQuery);
     }
     
     @Get(':id')
-    findOne(@Param('id') id: number) {
-        console.log(typeof id);
+    findOne(@Param('id', ParseIntPipe) id: number) {
+        console.log(id);
         return this.coffeesService.findOne('' + id);
     }
 
