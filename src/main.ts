@@ -7,6 +7,7 @@ import { WrapResponseInterceptor } from './common/interceptors/wrap-response.int
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  /* main.ts - useGlobalPipes addition */
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true, 
