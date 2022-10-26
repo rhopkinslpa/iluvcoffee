@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module'; 
 import { CoffeesModule } from './coffees/coffees.module';
 import { DatabaseModule } from './database/database.module';
+import { CommonModule } from './common/common.module';
 
 // I may not need DatabaseModule import above or in line 29 below.
 
@@ -27,6 +28,7 @@ import { DatabaseModule } from './database/database.module';
     CoffeesModule,  
     CoffeeRatingModule,
     DatabaseModule,
+    CommonModule,
   ],
   controllers: [AppController], // missing CoffeesController
   providers: [AppService], // missing CoffeesService
