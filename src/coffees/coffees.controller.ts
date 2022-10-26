@@ -12,7 +12,12 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { ApiForbiddenResponse, ApiResponse } from '@nestjs/swagger/dist/decorators/api-response.decorator';
 import { publicDecrypt } from 'crypto';
-import { Protocol } from 'src/common/decorators/protocol.decorator';
+
+// workaround: relative vs. shortest in VS Code File - Settings - Typescript - Preferences -
+// Import Module Specifier. Changing from shortest to relative doesn't work for me
+// import { Protocol } from 'src/common/decorators/protocol.decorator';
+
+import { Protocol } from '../common/decorators/protocol.decorator';
 import { Public } from '../common/decorators/public.decorator';
 import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { CoffeesService } from './coffees.service';
