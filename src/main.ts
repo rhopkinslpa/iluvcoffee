@@ -10,9 +10,9 @@ async function bootstrap() {
       whitelist: true,
       transform: true,
       forbidNonWhitelisted: true,
-      transformOptions: {
+      transformOptions: {                // from Adding Pagination
         enableImplicitConversion: true,
-      },
+      }
     }),
   );
   await app.listen(3000);

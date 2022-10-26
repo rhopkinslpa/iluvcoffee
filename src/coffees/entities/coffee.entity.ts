@@ -1,3 +1,6 @@
+// Pasted from Using Cascading Inserts and Updates
+
+/* Coffee Entity - Enabling Cascading inserts */
 import {
   Column,
   Entity,
@@ -18,13 +21,17 @@ export class Coffee {
   @Column()
   brand: string;
 
-  @JoinTable() // 👈 Join the 2 tables - only the OWNER-side does this
+  @Column({ default: 0 })   // from Use Transactions
+  recommendations: number;
+
+  @JoinTable()
   @ManyToMany(
     type => Flavor,
-    flavor => flavor.coffees, // what is "coffee" within the Flavor Entity 
+    flavor => flavor.coffees,
     {
-      cascade: true, // ['insert']
-    }
-  ) // 👈
+      cascade: true, // 👈 or optionally just insert or update ['insert']
+    },
+  )
   flavors: Flavor[];
+  // recommendations: any;  
 }
